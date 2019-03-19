@@ -76,7 +76,7 @@ class InitTables extends Command
      */
     public function handle()
     {
-        foreach($this->party_data as $parties_data) {
+        foreach($this->parties_data as $parties_data) {
             $party = new Party;
             $party->name = $parties_data['name'];
             $party->save();
@@ -84,7 +84,7 @@ class InitTables extends Command
             echo "Party $party->name created successfully\n";
         }
 
-        foreach($this->candidate_data as $candidates_data) {
+        foreach($this->candidates_data as $candidates_data) {
             $can = new Candidate;
             $can->name = $candidates_data['name'];
             $can->party_id = $candidates_data['party_id'];
