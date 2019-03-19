@@ -15,4 +15,6 @@ require('./bootstrap');
 
 require('./components/Example');
 require('./components/AllCandidates');
+require('./components/Details');
+
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-export default class AllCandidates extends Component {
+export default class Details extends Component {
     constructor(props) {
         super(props)
 
@@ -11,7 +11,8 @@ export default class AllCandidates extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/candidates'
+        var canNum = window.location.pathname.split('/')[2];
+        let url = '/api/candidates/' + canNum
 
         fetch(url, {
             headers: {
@@ -48,19 +49,23 @@ export default class AllCandidates extends Component {
             )
         }
         else {
-            let items = candidates.map((can) =>
-                <tr key={ can.id }>
-                    <td>{ can.name }</td>
-                    <td>{ can.party.name }</td>
+            let items = 
+                <tr key={ candidates.id }>
+                    <td>{ candidates.id }</td>
+                    <td>{ candidates.name }</td>
+                    <td>{ candidates.party.id }</td>
+                    <td>{ candidates.party.name }</td>
                 </tr>
-            )
+            
 
             content = (
                 <div className="table-responsive">
                     <table className="table table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th>Candidate Id</th>
                                 <th>Candidate Name</th>
+                                <th>Party Id</th>
                                 <th>Party Name</th>
                             </tr>
                         </thead>
@@ -81,9 +86,9 @@ export default class AllCandidates extends Component {
 }
 
 (() => {
-    let element = document.getElementById('content-candidates')
+    let element = document.getElementById('content-details')
 
     if(element) {
-        ReactDOM.render(<AllCandidates />, element)
+        ReactDOM.render(<Details />, element)
     }
 })()
